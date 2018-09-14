@@ -10,7 +10,7 @@
 
 	<dubbo:provider  id="cache_provider" delay="-1" timeout="6000" retries="0" loadbalance="random" registry="registry" threads="50" protocol="cache_protocol"/>
 
-    <dubbo:protocol id="cache_protocol" register="true" port="20804" accesslog="/usr/local/output/cache-app/dubbo/access.log"/>
+    <dubbo:protocol id="cache_protocol" register="true" port="10100" accesslog="/usr/local/output/cache-app/dubbo/access.log"/>
 
 
 	<!-- 要暴露的服务接口 -->

@@ -16,152 +16,156 @@ public class RedisServiceRpcImpl implements RedisServiceRpc {
     private JedisClusterConfig jedisClusterConfig;
 
     @Override
-    public String get(String key) {
-        return jedisClusterConfig.getJedisCluster().get(key);
+    public String get(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().get(getAppNameKey(appId,key));
     }
 
     @Override
-    public String set(String key, String value) {
-        return jedisClusterConfig.getJedisCluster().set(key, value);
+    public String set(String key, String value,int appId) {
+        return jedisClusterConfig.getJedisCluster().set(getAppNameKey(appId,key), value);
     }
 
     @Override
-    public Boolean exists(String key) {
-        return jedisClusterConfig.getJedisCluster().exists(key);
+    public Boolean exists(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().exists(getAppNameKey(appId,key));
     }
 
     @Override
-    public Long expire(String key, int seconds) {
-        return jedisClusterConfig.getJedisCluster().expire(key, seconds);
+    public Long expire(String key, int seconds,int appId) {
+        return jedisClusterConfig.getJedisCluster().expire(getAppNameKey(appId,key), seconds);
     }
 
     @Override
-    public Long expireAt(String key, long unixTime) {
-        return jedisClusterConfig.getJedisCluster().expireAt(key, unixTime);
+    public Long expireAt(String key, long unixTime,int appId) {
+        return jedisClusterConfig.getJedisCluster().expireAt(getAppNameKey(appId,key), unixTime);
     }
 
     @Override
-    public Long ttl(String key) {
-        return jedisClusterConfig.getJedisCluster().ttl(key);
+    public Long ttl(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().ttl(getAppNameKey(appId,key));
     }
 
     @Override
-    public Long setnx(String key, String value) {
-        return jedisClusterConfig.getJedisCluster().setnx(key, value);
+    public Long setnx(String key, String value,int appId) {
+        return jedisClusterConfig.getJedisCluster().setnx(getAppNameKey(appId,key), value);
     }
 
     @Override
-    public String setex(String key, int seconds, String value) {
-        return jedisClusterConfig.getJedisCluster().setex(key, seconds, value);
+    public String setex(String key, int seconds, String value,int appId) {
+        return jedisClusterConfig.getJedisCluster().setex(getAppNameKey(appId,key), seconds, value);
     }
 
     @Override
-    public Long decrBy(String key, long integer) {
-        return jedisClusterConfig.getJedisCluster().decrBy(key, integer);
+    public Long decrBy(String key, long integer,int appId) {
+        return jedisClusterConfig.getJedisCluster().decrBy(getAppNameKey(appId,key), integer);
     }
 
     @Override
-    public Long decr(String key) {
-        return jedisClusterConfig.getJedisCluster().decr(key);
+    public Long decr(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().decr(getAppNameKey(appId,key));
     }
 
     @Override
-    public Long incrBy(String key, long integer) {
-        return jedisClusterConfig.getJedisCluster().incrBy(key, integer);
+    public Long incrBy(String key, long integer,int appId) {
+        return jedisClusterConfig.getJedisCluster().incrBy(getAppNameKey(appId,key), integer);
     }
 
     @Override
-    public Long incr(String key) {
-        return jedisClusterConfig.getJedisCluster().incr(key);
+    public Long incr(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().incr(getAppNameKey(appId,key));
     }
 
     @Override
-    public Long del(String key) {
-        return jedisClusterConfig.getJedisCluster().del(key);
+    public Long del(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().del(getAppNameKey(appId,key));
     }
 
     @Override
-    public Long sadd(String key, String member) {
-        return jedisClusterConfig.getJedisCluster().sadd(key, member);
+    public Long sadd(String key, String member,int appId) {
+        return jedisClusterConfig.getJedisCluster().sadd(getAppNameKey(appId,key), member);
     }
 
     @Override
-    public Set<String> smembers(String key) {
-        return jedisClusterConfig.getJedisCluster().smembers(key);
+    public Set<String> smembers(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().smembers(getAppNameKey(appId,key));
     }
 
     @Override
-    public Long srem(String key, String member) {
-        return jedisClusterConfig.getJedisCluster().srem(key, member);
+    public Long srem(String key, String member,int appId) {
+        return jedisClusterConfig.getJedisCluster().srem(getAppNameKey(appId,key), member);
     }
 
     @Override
-    public Long scard(String key) {
-        return jedisClusterConfig.getJedisCluster().scard(key);
+    public Long scard(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().scard(getAppNameKey(appId,key));
     }
 
     @Override
-    public Boolean sismember(String key, String member) {
-        return jedisClusterConfig.getJedisCluster().sismember(key, member);
+    public Boolean sismember(String key, String member,int appId) {
+        return jedisClusterConfig.getJedisCluster().sismember(getAppNameKey(appId,key), member);
     }
 
     @Override
-    public Long zadd(String key, double score, String member) {
-        return jedisClusterConfig.getJedisCluster().zadd(key, score, member);
+    public Long zadd(String key, double score, String member,int appId) {
+        return jedisClusterConfig.getJedisCluster().zadd(getAppNameKey(appId,key), score, member);
     }
 
     @Override
-    public Long zrem(String key, String member) {
-        return jedisClusterConfig.getJedisCluster().zrem(key, member);
+    public Long zrem(String key, String member,int appId) {
+        return jedisClusterConfig.getJedisCluster().zrem(getAppNameKey(appId,key), member);
     }
 
     @Override
-    public Double zincrby(String key, double score, String member) {
-        return jedisClusterConfig.getJedisCluster().zincrby(key, score, member);
+    public Double zincrby(String key, double score, String member,int appId) {
+        return jedisClusterConfig.getJedisCluster().zincrby(getAppNameKey(appId,key), score, member);
     }
 
     @Override
-    public Long zrevrank(String key, String member) {
-        return jedisClusterConfig.getJedisCluster().zrevrank(key, member);
+    public Long zrevrank(String key, String member,int appId) {
+        return jedisClusterConfig.getJedisCluster().zrevrank(getAppNameKey(appId,key), member);
     }
 
     @Override
-    public Set<Tuple> zrangeWithScores(String key, int start, int end) {
-        return jedisClusterConfig.getJedisCluster().zrangeWithScores(key, start, end);
+    public Set<Tuple> zrangeWithScores(String key, int start, int end,int appId) {
+        return jedisClusterConfig.getJedisCluster().zrangeWithScores(getAppNameKey(appId,key), start, end);
     }
 
     @Override
-    public Set<Tuple> zrevrangeWithScores(String key, int start, int end) {
-        return jedisClusterConfig.getJedisCluster().zrevrangeWithScores(key, start, end);
+    public Set<Tuple> zrevrangeWithScores(String key, int start, int end,int appId) {
+        return jedisClusterConfig.getJedisCluster().zrevrangeWithScores(getAppNameKey(appId,key), start, end);
     }
 
     @Override
-    public Long zcard(String key) {
-        return jedisClusterConfig.getJedisCluster().zcard(key);
+    public Long zcard(String key,int appId) {
+        return jedisClusterConfig.getJedisCluster().zcard(getAppNameKey(appId,key));
     }
 
     @Override
-    public Double zscore(String key, String member) {
-        return jedisClusterConfig.getJedisCluster().zscore(key, member);
+    public Double zscore(String key, String member,int appId) {
+        return jedisClusterConfig.getJedisCluster().zscore(getAppNameKey(appId,key), member);
     }
 
     @Override
-    public Long zcount(String key, double min, double max) {
-        return jedisClusterConfig.getJedisCluster().zcount(key, min, max);
+    public Long zcount(String key, double min, double max,int appId) {
+        return jedisClusterConfig.getJedisCluster().zcount(getAppNameKey(appId,key), min, max);
     }
 
     @Override
-    public Set<String> zrangeByScore(String key, double min, double max) {
-        return jedisClusterConfig.getJedisCluster().zrangeByScore(key, min, max);
+    public Set<String> zrangeByScore(String key, double min, double max,int appId) {
+        return jedisClusterConfig.getJedisCluster().zrangeByScore(getAppNameKey(appId,key), min, max);
     }
 
     @Override
-    public Set<Tuple> zrangeByScoreWithScores(String key, double min, double max, int offset, int count) {
-        return jedisClusterConfig.getJedisCluster().zrangeByScoreWithScores(key, min, max, offset, count);
+    public Set<Tuple> zrangeByScoreWithScores(String key, double min, double max, int offset, int count,int appId) {
+        return jedisClusterConfig.getJedisCluster().zrangeByScoreWithScores(getAppNameKey(appId,key), min, max, offset, count);
     }
 
     @Override
-    public Set<Tuple> zrevrangeByScoreWithScores(String key, double max, double min, int offset, int count) {
-        return jedisClusterConfig.getJedisCluster().zrevrangeByScoreWithScores(key, max, min, offset, count);
+    public Set<Tuple> zrevrangeByScoreWithScores(String key, double max, double min, int offset, int count,int appId) {
+        return jedisClusterConfig.getJedisCluster().zrevrangeByScoreWithScores(getAppNameKey(appId,key), max, min, offset, count);
+    }
+
+    private String getAppNameKey(int appId,String key) {
+        return appId + ":" + key;
     }
 }
